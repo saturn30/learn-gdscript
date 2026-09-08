@@ -1,0 +1,92 @@
+{
+  "ok": true,
+  "language": "ko",
+  "source_commit": "8546d82528e36b5e5599d45bcb3a1f2f20cb5bfc",
+  "generated_at": "2026-09-08T15:45:46.472161Z",
+  "godot_version": "4.6.3",
+  "file_count": 19,
+  "total_bytes": 79773775,
+  "files": [
+    {
+      "path": "KOREAN-EDITION.md",
+      "bytes": 818
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1481
+    },
+    {
+      "path": "NotoSansKR-LICENSE.txt",
+      "bytes": 4211
+    },
+    {
+      "path": "bootstrap.d.ts",
+      "bytes": 2009
+    },
+    {
+      "path": "bootstrap.js",
+      "bytes": 16035
+    },
+    {
+      "path": "fullscreen_off.png",
+      "bytes": 2216
+    },
+    {
+      "path": "fullscreen_on.png",
+      "bytes": 2190
+    },
+    {
+      "path": "icon.svg",
+      "bytes": 5812
+    },
+    {
+      "path": "index.apple-touch-icon.png",
+      "bytes": 12983
+    },
+    {
+      "path": "index.audio.position.worklet.js",
+      "bytes": 2973
+    },
+    {
+      "path": "index.audio.worklet.js",
+      "bytes": 7298
+    },
+    {
+      "path": "index.html",
+      "bytes": 3178
+    },
+    {
+      "path": "index.icon.png",
+      "bytes": 6214
+    },
+    {
+      "path": "index.js",
+      "bytes": 251320
+    },
+    {
+      "path": "index.pck",
+      "bytes": 50996876
+    },
+    {
+      "path": "index.png",
+      "bytes": 21443
+    },
+    {
+      "path": "index.wasm",
+      "bytes": 28325110
+    },
+    {
+      "path": "learn-gdscript.png",
+      "bytes": 107379
+    },
+    {
+      "path": "style.css",
+      "bytes": 4229
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "index.pck is larger than 25 MiB (48.6 MiB)",
+    "index.wasm is larger than 25 MiB (27.0 MiB)"
+  ]
+}

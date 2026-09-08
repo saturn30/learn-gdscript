@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <title>GDScript 한국어 학습 - Learn to Code From Zero with Godot</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <meta property="og:image" content="./learn-gdscript.png" />
+    <meta name="twitter:image" content="./learn-gdscript.png" />
+    <meta property="og:title" content="GDScript 한국어 학습 - Learn to Code From Zero with Godot" />
+    <meta name="twitter:title" content="GDScript 한국어 학습 - Learn to Code From Zero with Godot" />
+    <meta
+      property="og:description"
+      content="재미있는 장난감과 게임을 만들며 GDScript와 프로그래밍을 배워 보세요. 완전 초보자를 위한 무료 학습 앱입니다."
+    />
+    <meta
+      name="twitter:description"
+      content="재미있는 장난감과 게임을 만들며 GDScript와 프로그래밍을 배워 보세요. 완전 초보자를 위한 무료 학습 앱입니다."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="." />
+    <link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
+<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
+
+  </head>
+  <body>
+    <div class="layer desktop-only" id="game">
+      <div id="canvas-container">
+        <div id="canvas-frame">
+          <canvas id="canvas" width="1920" height="1080">
+            현재 브라우저는 HTML5 캔버스를 지원하지 않는 것 같습니다.<br />
+            브라우저를 최신 버전으로 업데이트하거나 다른 브라우저를 사용해 보세요.
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="layer desktop-only" id="status">
+      <img
+        class="icon"
+        src="icon.svg"
+        alt="학사모를 쓴 Godot 로고"
+      />
+      <div id="loader" class="loader loader-no-status"></div>
+      <div id="notices" class="notices">
+        앱을 불러오는 중 오류가 발생했습니다:<br />
+      </div>
+    </div>
+    <div class="fullscreen mobile-only" id="mobile-warning">
+      <div class="mobile-warning-modal notices">
+        <p>
+          브라우저 창이 너무 좁습니다. 이 앱은 작은 화면이나 세로 방향에
+          맞춰져 있지 않습니다. 계속하려면 이 점을 감수해 주세요!
+        </p>
+        <button id="mobile-warning-dismiss-button">이해했어요</button>
+      </div>
+    </div>
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript">
+      const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":50996876,"index.wasm":28325110},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+      const GDQUEST_ENVIRONMENT = {
+     git_commit: "8546d82528e36b5e5599d45bcb3a1f2f20cb5bfc",
+   };
+    </script>
+    <script type="text/javascript" src="bootstrap.js"></script>
+  </body>
+</html>
+
