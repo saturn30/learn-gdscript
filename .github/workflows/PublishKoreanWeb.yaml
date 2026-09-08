@@ -1,0 +1,153 @@
+name: "Publish Korean Web"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-korean-web
+  cancel-in-progress: false
+
+env:
+  BUILD_GIT_COMMIT: ${{ github.sha }}
+  BUILD_GIT_BRANCH: ${{ github.ref_name }}
+
+jobs:
+  build:
+    name: Build and verify Korean Web
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          lfs: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v6.0.0
+        with:
+          python-version: "3.x"
+
+      - name: Install translation tooling
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Restore build downloads
+        uses: actions/cache@v6.1.0
+        with:
+          path: .cache/build-downloads
+          key: korean-web-build-downloads-${{ runner.os }}-${{ hashFiles('.env') }}
+
+      - name: Materialize validated Korean catalogs
+        run: >-
+          python3 tools/prepare_korean_translations.py
+          --source-dir localization/ko
+          --reference-dir i18n/ko
+          --target-dir i18n/ko
+          --report-json build/korean-translation-report.json
+
+      - name: Prepare web build environment
+        run: python3 build.py prepare ci-web
+
+      - name: Configure Godot export templates
+        run: echo "GODOT_TEMPLATES_DIR=$PWD/templates" >> "$GITHUB_ENV"
+
+      - name: Run Korean course integration test
+        run: >-
+          ./godot_server.x86_64 --headless --path .
+          res://tests/integration_test_course.tscn --
+          --test-profile=KoreanPublishIntegration --test-locale=ko
+
+      - name: Validate all translated lessons
+        run: >-
+          ./godot_server.x86_64 --headless --path .
+          res://tests/validate_translated_lessons.tscn
+
+      - name: Export Korean Web build
+        run: >-
+          python3 build.py export web
+          --output-dir build/korean-web
+          --base-url ""
+
+      - name: Verify Korean Web build
+        run: >-
+          python3 tools/verify_korean_web_build.py
+          --build-dir build/korean-web
+          --source-commit "$GITHUB_SHA"
+          --report-json build/korean-web-report.json
+
+      - name: Package Korean Web artifact
+        run: (cd build && zip -r korean-web.zip korean-web)
+
+      - name: Upload Korean Web directory
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: korean-web-output
+          path: build/korean-web
+          retention-days: 14
+
+      - name: Upload Korean Web ZIP and reports
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: korean-web-zip
+          path: |
+            build/korean-web.zip
+            build/korean-translation-report.json
+            build/korean-web-report.json
+          retention-days: 14
+
+  publish:
+    name: Publish Korean Web to gh-pages root
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download Korean Web ZIP
+        uses: actions/download-artifact@v8.0.1
+        with:
+          name: korean-web-zip
+          path: ${{ runner.temp }}/korean-web-artifacts
+
+      - name: Publish complete output to gh-pages root
+        env:
+          GH_REPOSITORY_URL: ${{ github.server_url }}/${{ github.repository }}.git
+        run: |
+          set -euo pipefail
+          unzip -q "${RUNNER_TEMP}/korean-web-artifacts/korean-web.zip" -d "${RUNNER_TEMP}/korean-web-site"
+          mkdir "${RUNNER_TEMP}/gh-pages"
+          cd "${RUNNER_TEMP}/gh-pages"
+          git init
+          git remote add origin "$GH_REPOSITORY_URL"
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
+            git fetch --depth=1 origin gh-pages
+            git checkout -B gh-pages FETCH_HEAD
+          else
+            git checkout --orphan gh-pages
+          fi
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf -- {} +
+          cp -R "${RUNNER_TEMP}/korean-web-site/korean-web/." .
+          touch .nojekyll
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --all
+          if git diff --cached --quiet; then
+            echo "gh-pages is already up to date."
+          else
+            git commit -m "Publish Korean Web ${GITHUB_SHA}"
+            git push origin HEAD:gh-pages
+          fi
+
+      - name: Add publication summary
+        run: |
+          {
+            echo "## Korean Web published"
+            echo
+            echo "- Source commit: `${GITHUB_SHA}`"
+            echo "- gh-pages: https://github.com/${GITHUB_REPOSITORY}/tree/gh-pages"
+            echo "- Workflow artifacts: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo "- The complete export is published at the gh-pages repository root."
+          } >> "$GITHUB_STEP_SUMMARY"

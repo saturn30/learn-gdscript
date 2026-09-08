@@ -1,0 +1,28 @@
+lesson_number,source_folder,slug,translation_status,structure_review,content_review,web_review,notes
+1,lesson-1-what-code-is-like,what-code-is-like,complete,passed,sample-checked,pending,Code and beginner terminology retained
+2,lesson-2-your-first-error,your-first-error,complete,passed,automated,pending,
+3,lesson-3-standing-on-shoulders-of-giants,standing-on-shoulders-of-giants,complete,passed,automated,pending,
+4,lesson-4-drawing-a-rectangle,drawing-a-rectangle,complete,passed,automated,pending,
+5,lesson-5-your-first-function,your-first-function,complete,passed,sample-checked,pending,Function and parameter terminology retained
+6,lesson-6-multiple-function-parameters,multiple-function-parameters,complete,passed,automated,pending,
+7,lesson-7-member-variables,member-variables,complete,passed,automated,pending,
+8,lesson-8-defining-variables,defining-variables,complete,passed,automated,pending,
+9,lesson-9-adding-and-subtracting,adding-and-subtracting,complete,passed,automated,pending,
+10,lesson-10-the-game-loop,the-game-loop,complete,passed,automated,pending,
+11,lesson-11-time-delta,time-delta,complete,passed,sample-checked,pending,Delta time explanation checked
+12,lesson-12-using-variables,using-variables,complete,passed,automated,pending,
+13,lesson-13-conditions,conditions,complete,passed,automated,pending,
+14,lesson-14-multiplying,multiplying,complete,passed,automated,pending,
+16,lesson-16-2d-vectors,2d-vectors,complete,passed,automated,pending,Source course has no lesson folder 15
+17,lesson-17-while-loops,while-loops,complete,passed,automated,pending,
+18,lesson-18-for-loops,for-loops,complete,passed,automated,pending,
+19,lesson-19-creating-arrays,creating-arrays,complete,passed,automated,pending,
+20,lesson-20-looping-over-arrays,looping-over-arrays,complete,passed,automated,pending,
+21,lesson-21-strings,strings,complete,passed,automated,pending,
+22,lesson-22-functions-return-values,functions-return-values,complete,passed,automated,pending,
+23,lesson-23-append-to-arrays,append-to-arrays,complete,passed,automated,pending,
+24,lesson-24-access-array-indices,access-array-indices,complete,passed,automated,pending,
+25,lesson-25-creating-dictionaries,creating-dictionaries,complete,passed,automated,pending,
+26,lesson-26-looping-over-dictionaries,looping-over-dictionaries,complete,passed,automated,pending,
+27,lesson-27-value-types,value-types,complete,passed,automated,pending,
+28,lesson-28-specifying-types,specifying-types,complete,passed,automated,pending,

@@ -2,10 +2,11 @@
 
 [ext_resource type="FontFile" path="res://ui/assets/fonts/OpenSans-Italic.ttf" id="1"]
 [ext_resource type="FontFile" path="res://ui/assets/fonts/NotoSansSC-Regular.ttf" id="2"]
+[ext_resource type="FontFile" path="res://ui/assets/fonts/NotoSansKR-Regular.ttf" id="ko_regular"]
 [ext_resource type="FontFile" path="res://ui/assets/fonts/IBMPlexSansArabic-Regular.ttf" id="3_ukadq"]
 [ext_resource type="FontFile" path="res://ui/assets/fonts/NotoSansTamil-Regular.ttf" id="4_wqdmv"]
 [ext_resource type="FontFile" path="res://ui/assets/fonts/NotoSansKhmer-Regular.ttf" id="5_q0npw"]
 
 [resource]
-fallbacks = Array[Font]([ExtResource("2"), ExtResource("3_ukadq"), ExtResource("4_wqdmv"), ExtResource("5_q0npw")])
+fallbacks = Array[Font]([ExtResource("2"), ExtResource("3_ukadq"), ExtResource("4_wqdmv"), ExtResource("5_q0npw"), ExtResource("ko_regular")])
 base_font = ExtResource("1")

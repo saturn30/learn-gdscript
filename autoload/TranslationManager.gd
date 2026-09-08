@@ -25,6 +25,7 @@ const LOCALE_TO_LABEL := {
 	"cs": "Čeština",
 	"da": "Dansk",
 	"ar": "عربي",
+	"ko": "한국어",
 }
 
 const RTL_LOCALES := [

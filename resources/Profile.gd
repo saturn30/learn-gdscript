@@ -23,7 +23,7 @@ const URL_GODOT_DOCS_REF := "ref=godot-docs"
 # User settings
 
 ## Application language.
-@export var language := "en"
+@export var language := "ko"
 ## Relative size adjustment for all fonts, in integer steps.
 @export var font_size_scale: int = 0
 ## Flag that enables the lower contrast mode.
