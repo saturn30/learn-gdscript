@@ -28,6 +28,11 @@ GODOT_EXPORT_PRESET_NAMES = {
 # Make sure it matches what's in the Github workflow, ExportGodot.yaml
 GODOT_BINARY_NAME = "godot_server.x86_64"
 
+WEB_ATTRIBUTION_FILES = {
+    "LICENSE": "LICENSE",
+    "ui/assets/fonts/NotoSansKR-LICENSE.txt": "NotoSansKR-LICENSE.txt",
+}
+
 
 class BuildInfo:
     """
@@ -36,7 +41,7 @@ class BuildInfo:
     commands run. See main() below.
     """
 
-    def __init__(self):
+    def __init__(self, base_url_override=None, output_dir_override=None):
         # Load variables from .env file into os.environ.
         env_path = Path(".env")
         if not env_path.exists():
@@ -79,12 +84,16 @@ class BuildInfo:
 
         self.build_date_iso = datetime.now().strftime("%Y-%m-%d")
 
-        self.base_url = os.environ.get(
-            "url", "https://gdquest.github.io/learn-gdscript"
+        configured_base_url = (
+            os.environ.get("url", "https://gdquest.github.io/learn-gdscript")
+            if base_url_override is None
+            else base_url_override
         )
+        self.base_url = configured_base_url.rstrip("/")
         is_release = self.git_branch == "release"
-        if not is_release:
+        if not is_release and self.base_url:
             self.base_url = f"{self.base_url}/{self.git_branch}"
+        self.web_output_dir = output_dir_override
 
         self.godot_version = os.environ.get("GODOT_VERSION", "")
         self.templates_repo = os.environ.get("TEMPLATES_REPO", "")
@@ -110,6 +119,9 @@ class BuildInfo:
             "osx": "build/osx",
             "web": "build/web",
         }
+        if platform == "web" and self.web_output_dir is not None:
+            return self.web_output_dir
+
         base = BUILD_DIRECTORIES[platform]
         if platform == "web" and self.git_branch != "release":
             return f"{base}/{self.git_branch}"
@@ -383,15 +395,28 @@ def prepare_course_scripts():
     print(f"✓ Copied {count} scripts to .lgd format")
 
 
-def prepare_ci():
+def copy_web_attribution_files(output_dir):
+    """Include source and bundled-font licenses in the standalone Web output."""
+    output_path = Path(output_dir)
+    for source_name, target_name in WEB_ATTRIBUTION_FILES.items():
+        source_path = Path(source_name)
+        if not source_path.is_file():
+            print(f"Error: required Web attribution file is missing: {source_path}")
+            sys.exit(1)
+        shutil.copy2(source_path, output_path / target_name)
+    print("Copied source and font license files")
+
+
+def prepare_ci(web_only=False):
     """
     Set up the CI environment: download Godot headless build, export templates,
-    Butler, import the project, and prepare course scripts.
+    optionally download Butler, import the project, and prepare course scripts.
     """
     print("Preparing CI environment...\n")
 
     download_godot_and_templates()
-    download_butler()
+    if not web_only:
+        download_butler()
 
     if not os.path.exists(GODOT_BINARY_NAME):
         print(f"Error: {GODOT_BINARY_NAME} not found after download")
@@ -462,7 +487,7 @@ const build_date := "{build_info.build_date_iso}";
      git_commit: "{build_info.git_commit}",
    }}''',
         )
-        template = template.replace("%url%", build_info.base_url)
+        template = template.replace("%url%", build_info.base_url or ".")
         Path("html_export/index.html").write_text(template)
         print("Created HTML template")
 
@@ -492,6 +517,7 @@ const build_date := "{build_info.build_date_iso}";
                         item, Path(output_dir) / item.name, dirs_exist_ok=True
                     )
             print("Copied static web files")
+        copy_web_attribution_files(output_dir)
 
     print(f"\n✓ Exported {platform} to {output_dir}")
 
@@ -789,6 +815,16 @@ Examples:
     export_cmd.add_argument(
         "platform", choices=list(GODOT_EXPORT_PRESET_NAMES.keys()) + ["all"]
     )
+    export_cmd.add_argument(
+        "--base-url",
+        default=None,
+        help="Override the web build base URL; pass an empty value for relative URLs",
+    )
+    export_cmd.add_argument(
+        "--output-dir",
+        default=None,
+        help="Override the web build output directory",
+    )
 
     push_cmd = subparsers.add_parser("push", help="Push build to itch.io")
     push_cmd.add_argument(
@@ -796,7 +832,9 @@ Examples:
     )
 
     prepare_cmd = subparsers.add_parser("prepare", help="Prepare build environment")
-    prepare_cmd.add_argument("target", choices=["ci", "test", "local", "clean"])
+    prepare_cmd.add_argument(
+        "target", choices=["ci", "ci-web", "test", "local", "clean"]
+    )
 
     clean_cmd = subparsers.add_parser("clean", help="Remove build files")
     clean_cmd.add_argument("target", choices=["all", "web"])
@@ -829,7 +867,10 @@ Examples:
         sys.exit(1)
 
     global build_info
-    build_info = BuildInfo()
+    build_info = BuildInfo(
+        base_url_override=getattr(args, "base_url", None),
+        output_dir_override=getattr(args, "output_dir", None),
+    )
 
     if args.command == "export":
         # When building locally, we need to manually call the function to
@@ -862,6 +903,8 @@ Examples:
     elif args.command == "prepare":
         if args.target == "ci":
             prepare_ci()
+        elif args.target == "ci-web":
+            prepare_ci(web_only=True)
         elif args.target == "test":
             prepare_test()
         elif args.target == "clean":

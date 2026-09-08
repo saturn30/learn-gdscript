@@ -43,6 +43,8 @@ class IntegrationTestResult:
 
 var _course_index: CourseIndex
 var _original_time_scale := 1.0
+var _test_locale := TranslationManager.DEFAULT_LOCALE
+var _test_profile_name := TEST_PROFILE_NAME
 var _lesson_filter := 0
 var _practice_filter := 0
 var _test_results: Array[IntegrationTestResult] = []
@@ -55,14 +57,19 @@ var _attempted_practice_count := 0
 func _ready() -> void:
 	_original_time_scale = Engine.time_scale
 	Engine.time_scale = time_scale
-	var test_profile := UserProfiles.get_profile(TEST_PROFILE_NAME)
-	test_profile.language = TranslationManager.DEFAULT_LOCALE
+	var arguments := OS.get_cmdline_user_args()
+	for argument in arguments:
+		if argument.begins_with("--test-locale="):
+			_test_locale = argument.trim_prefix("--test-locale=")
+		elif argument.begins_with("--test-profile="):
+			_test_profile_name = argument.trim_prefix("--test-profile=")
+	var test_profile := UserProfiles.get_profile(_test_profile_name)
+	test_profile.language = _test_locale
 	test_profile.save()
-	TranslationManager.set_language(TranslationManager.DEFAULT_LOCALE)
-	TranslationServer.set_locale(TranslationManager.DEFAULT_LOCALE)
+	TranslationManager.set_language(_test_locale)
+	TranslationServer.set_locale(_test_locale)
 
 	# Check command line arguments for filters to run a specific lesson or practice
-	var arguments := OS.get_cmdline_user_args()
 	for argument in arguments:
 		if argument.begins_with("--lesson="):
 			_lesson_filter = _parse_location_number(argument.trim_prefix("--lesson="), "L")
@@ -79,8 +86,8 @@ func _ready() -> void:
 
 	print("RUNNING INTEGRATION TEST")
 	print("Time scale: %sx" % time_scale)
-	print("Profile: %s" % TEST_PROFILE_NAME)
-	print("Locale: %s" % TranslationManager.DEFAULT_LOCALE)
+	print("Profile: %s" % _test_profile_name)
+	print("Locale: %s" % _test_locale)
 	print("Filters: lesson=%s practice=%s\n" % [_lesson_filter, _practice_filter])
 
 	_course_index = CourseIndexPaths.get_course_index_instance(COURSE_ID)

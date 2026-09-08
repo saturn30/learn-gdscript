@@ -142,7 +142,7 @@ body {
 
 /*-- NOTICES --*/
 .notices {
-  font-family: "Noto Sans", "Droid Sans", Arial, sans-serif;
+  font-family: "Noto Sans KR", "Noto Sans", "Droid Sans", Arial, sans-serif;
   color: #3b3943;
   max-width: 640px;
   padding: 3em;

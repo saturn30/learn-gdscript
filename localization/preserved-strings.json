@@ -1,0 +1,278 @@
+[
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "var",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "=",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "heal(50)",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "func heal(amount):\n\thealth += amount",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "Y",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "level_up()",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "func level_up():\n\tscale.x += 0.2\n\tscale.y += 0.2\n\t# ...",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "func level_up():\n\tscale += Vector2(0.2, 0.2)\n\t# ...",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "move()",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "func move():\n\tposition += Vector2(20, 20)",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "Vector2(100, 100)",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "grid_size = Vector2(3, 3)",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "cell = Vector2(0, 1)",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "draw_wall()",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "func draw_wall():\n\tdraw_square()\n\tjump(110, 0)\n\tdraw_square()\n\tjump(110, 0)\n\tdraw_square()",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "func draw_wall():\n\tvar number = 0\n\twhile number < 3:\n\t\tdraw_square()\n\t\tjump(110, 0)\n\t\tnumber += 1",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "[",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": ",",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "...",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "]",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": ":",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "func",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "(",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": ")",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "take_damage(25)",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "func take_damage(amount):\n\thealth -= amount",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": "heal(25)",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "application.po",
+    "msgctxt": "",
+    "msgid": " > ",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "[code]draw_corner(240)[/code]\n[code]draw_corner(120)[/code]",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "[code]draw_corner(240, 45)[/code]\n[code]draw_corner(120, 90)[/code]",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "[code]draw_square(200)[/code]\n[code]draw_square(100)[/code]",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "[code]draw_rectangle(260, 180)[/code]\n[code]draw_rectangle(160, 210)[/code]",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "[code]health -= amount[/code]\n[code]health = health - amount[/code]",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "health -= amount",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "health += amount",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "health = health + amount",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "health = health - amount",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "rotate(angular_speed * delta)",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "[code]heal(40)[/code]\n[code]heal(40)[/code]",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "[code]take_damage(10)[/code]\n[code]take_damage(10)[/code]\n[code]take_damage(10)[/code]",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "[code]\nvar level = 5\nvar power = 3",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "func calculate_damage():\n\tvar damage = power * level\n[/code]",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "func calculate_damage():\n\tvar damage = power * level\n\tdamage *= 2\n[/code]",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "position -= Vector2(50, 0)",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "course.po",
+    "msgctxt": "",
+    "msgid": "position.x -= Vector2(50, 0)",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  },
+  {
+    "catalog": "supplementary.po",
+    "msgctxt": "",
+    "msgid": "[code]func move_to_position(x, y):[/code]",
+    "reason": "Code, punctuation, keyboard key, or runtime identifier."
+  }
+]

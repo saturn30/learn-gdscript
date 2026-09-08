@@ -282,7 +282,11 @@ window.GDQUEST = ((/** @type {GDQuestLib} */ GDQUEST) => {
       setStatusMode(StatusMode.INDETERMINATE);
 
       if (!Engine.isWebGLAvailable()) {
-        displayFailureNotice("WebGL not available");
+        displayFailureNotice(
+          document.documentElement.lang === "ko"
+            ? "WebGL을 사용할 수 없습니다. 브라우저를 최신 버전으로 업데이트하거나 다른 브라우저를 사용해 보세요."
+            : "WebGL not available"
+        );
       } else {
         load();
       }
