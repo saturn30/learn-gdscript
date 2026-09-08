@@ -1,8 +1,8 @@
 {
   "ok": true,
   "language": "ko",
-  "source_commit": "8546d82528e36b5e5599d45bcb3a1f2f20cb5bfc",
-  "generated_at": "2026-09-08T15:45:46.472161Z",
+  "source_commit": "a143f51a3598e68caaffb77f135dfff84ad8feff",
+  "generated_at": "2026-09-08T15:57:32.446349Z",
   "godot_version": "4.6.3",
   "file_count": 19,
   "total_bytes": 79773775,
